@@ -1,25 +1,19 @@
 ---
 import { Icon } from 'astro-icon';
+import AppButton from './app-button.astro';
 ---
 
-<!--
-  negative margin is sum of button width (8) and gap size of flex parent (6)
-  TODO don't hardcode these values
--->
-<button
-  id="theme-switcher"
-  type="button"
-  class="-ml-14 origin-[right_center] scale-0 transition-all duration-500"
->
+<AppButton id="theme-switcher" class="origin-[right_center]" title="Toggle theme">
   <div id="icon-theme-light">
-    <Icon name="theme/light" class="h-8" />
-    <span class="sr-only">Use light theme</span>
+    <Icon aria-hidden="true" name="theme/light" class="h-8" />
+    <span class="sr-only">Gunakan tema terang</span>
   </div>
+
   <div id="icon-theme-dark" class="hidden">
-    <Icon name="theme/dark" class="h-8" />
-    <span class="sr-only">Use dark theme</span>
+    <Icon aria-hidden="true" name="theme/dark" class="h-8" />
+    <span class="sr-only">Gunakan tema gelap</span>
   </div>
-</button>
+</AppButton>
 
 <script>
   import invariant from 'tiny-invariant';
@@ -52,9 +46,3 @@ import { Icon } from 'astro-icon';
 
   updateIcon();
 </script>
-
-<style>
-  :global(.fixed-header) #theme-switcher {
-    @apply ml-0 scale-100;
-  }
-</style>

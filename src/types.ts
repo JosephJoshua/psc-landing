@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 export interface CompatibilityItem {
   icon: string;
   title: string;
@@ -8,6 +10,12 @@ export interface FeatureItem {
   description: string;
   icon: string;
   title: string;
+}
+
+export interface ServiceItem {
+  image: ImageMetadata;
+  title: string;
+  description: string;
 }
 
 export interface FooterLink {

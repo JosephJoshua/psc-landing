@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import type { CompatibilityItem } from '~/types';
+import AppLink from './app-link.astro';
 
 export interface Props {
   items: Array<CompatibilityItem>;
@@ -22,16 +23,16 @@ const { items, title, url } = Astro.props;
       {
         items.map((item) => (
           <li>
-            <a class="flex flex-col items-center gap-2" href={item.url}>
+            <AppLink class="flex flex-col items-center gap-2" href={item.url}>
               <Icon class="h-12" name={item.icon} />
               <span>{item.title}</span>
-            </a>
+            </AppLink>
           </li>
         ))
       }
     </ul>
   </div>
   <p class="text-right text-sm">
-    <a class="text-primary" href={url}> ...and more &rarr;</a>
+    <AppLink class="text-primary" href={url}>...and more &rarr;</AppLink>
   </p>
 </div>

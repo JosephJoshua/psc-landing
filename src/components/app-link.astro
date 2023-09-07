@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'a'> {}
+
+const { href, class: className, ...restProps } = Astro.props;
+
+const url = new URL(href ?? '', Astro.url);
+const isExternal = url.host !== Astro.url.host;
+---
+
+<a
+  rel={isExternal ? 'noopener noreferrer' : null}
+  target={isExternal ? '_blank' : null}
+  href={href}
+  class:list={[
+    'transition-colors duration-200 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+    className,
+  ]}
+  {...restProps}
+>
+  <slot />
+</a>

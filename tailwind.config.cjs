@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+        sans: ['Encode Sans Variable', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: 'var(--color-primary)',
@@ -14,6 +14,7 @@ module.exports = {
       textColor: {
         default: 'var(--color-text)',
         offset: 'var(--color-text-offset)',
+        light: 'var(--color-text-light)',
       },
       backgroundColor: {
         default: 'var(--color-background)',

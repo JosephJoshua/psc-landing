@@ -1,9 +1,11 @@
 ---
-import { Picture } from '@astrojs/image/components';
 import { Icon } from 'astro-icon';
 import ThemeSwitcher from '~/components/theme-switcher.astro';
-import logo from '~/assets/logo.png';
 import type { NavItem } from '~/types';
+import ContentSection from './content-section.astro';
+import ScrollUpButton from './scroll-up-button.astro';
+import AppButton from './app-button.astro';
+import AppLink from './app-link.astro';
 
 const navItems: Array<NavItem> = [
   { title: 'Tentang Kami', url: '#about-us' },
@@ -14,60 +16,71 @@ const navItems: Array<NavItem> = [
 
 <header
   id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+  class="sticky top-0 z-20 flex w-full justify-center border-b border-transparent bg-default px-8 py-4"
 >
-  <a class="flex items-center gap-3 hover:!text-default" href="#">
-    <h1 class="sr-only">Point Service Center</h1>
-    <Icon name="logo" class="h-12" />
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
-        <Icon pack="mdi" name="menu" class="h-8" />
-      </button>
-      <ThemeSwitcher />
-    </div>
-    <div id="menu-modal" class="modal hidden" aria-hidden="true">
-      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-        <div class="space-y-4" role="dialog" aria-modal="true">
-          <header class="text-right">
-            <button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
-              <Icon pack="mdi" name="close" class="h-8" />
-            </button>
-          </header>
-          <div class="flex justify-center">
-            <Icon name="logomark" class="h-16" />
+  <ContentSection class="flex w-full items-center justify-between">
+    <AppLink class="flex items-center gap-3 hover:!text-default" href="#">
+      <h1 class="sr-only">Point Service Center</h1>
+      <Icon name="logo" class="h-12" />
+    </AppLink>
+
+    <div>
+      <div class="flex items-center gap-6">
+        <nav class="hidden sm:block">
+          <ul class="flex items-center gap-6">
+            {
+              navItems.map(({ title, url }) => (
+                <li>
+                  <AppLink class="text-sm" href={url}>
+                    {title}
+                  </AppLink>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <AppButton id="open-nav-button" class="sm:hidden" aria-label="Navigation">
+          <Icon pack="mdi" name="menu" class="h-8" />
+        </AppButton>
+
+        <ThemeSwitcher />
+        <ScrollUpButton
+          class="scroll-up-button -ml-14 origin-[center_right] scale-0 transition-all duration-300"
+        />
+      </div>
+
+      <div id="menu-modal" class="modal hidden" aria-hidden="true">
+        <div class="fixed inset-0 bg-default px-8 py-4 text-default">
+          <div class="space-y-4" role="dialog" aria-modal="true">
+            <header class="text-right">
+              <AppButton id="close-nav-button" aria-label="Close navigation">
+                <Icon pack="mdi" name="close" class="h-8" />
+              </AppButton>
+            </header>
+
+            <div class="flex justify-center">
+              <Icon name="logo" class="h-16" />
+            </div>
+
+            <nav>
+              <ul class="flex flex-col">
+                {
+                  navItems.map(({ title, url }) => (
+                    <li>
+                      <AppLink class="block py-4 text-center text-xl" href={url}>
+                        {title}
+                      </AppLink>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
           </div>
-          <nav>
-            <ul class="flex flex-col">
-              {
-                navItems.map(({ title, url }) => (
-                  <li>
-                    <a class="block py-4 text-center text-xl" href={url}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
         </div>
       </div>
     </div>
-  </div>
+  </ContentSection>
 </header>
 
 <script>
@@ -76,14 +89,13 @@ const navItems: Array<NavItem> = [
 
   const menuModalId = 'menu-modal';
 
-  const header = document.querySelector('#page-header') as HTMLElement;
-  const page = document.documentElement;
   const menu = document.querySelector(`#${menuModalId} ul`);
   const openNavButton = document.querySelector('#open-nav-button');
   const closeNavButton = document.querySelector('#close-nav-button');
+  const scrollUpButton = document.getElementsByClassName('scroll-up-button')[0];
 
-  invariant(header, 'header should not be null');
   invariant(menu, 'menu should not be null');
+  invariant(scrollUpButton, 'scrollUpButton should not be null');
   invariant(openNavButton, 'openNavButton should not be null');
   invariant(closeNavButton, 'closeNavButton should not be null');
 
@@ -99,8 +111,10 @@ const navItems: Array<NavItem> = [
   closeNavButton.addEventListener('click', closeMenu);
 
   document.addEventListener('scroll', () => {
-    const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-    header.classList.toggle('fixed-header', d < 0);
+    const force = document.documentElement.scrollTop > 200;
+
+    scrollUpButton.classList.toggle('scale-100', force);
+    scrollUpButton.classList.toggle('ml-0', force);
   });
 
   menu.addEventListener('click', (event) => {
@@ -119,10 +133,6 @@ const navItems: Array<NavItem> = [
 </noscript>
 
 <style>
-  .fixed-header {
-    @apply fixed bottom-auto top-0;
-    @apply border-default bg-default text-default;
-  }
   .modal.is-open {
     @apply block;
   }
