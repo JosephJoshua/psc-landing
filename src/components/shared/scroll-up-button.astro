@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon';
+import IconButton from './icon-button.astro';
+
+export interface Props {
+  class?: string;
+  id?: string;
+}
+
+const { class: className, id } = Astro.props;
+---
+
+<IconButton
+  class:list={['flex items-center justify-center', className]}
+  id={id}
+  title="Scroll up"
+  aria-label="Scroll ke atas"
+  data-scroll-up-button
+>
+  <Icon name="arrow-up" class="h-6" />
+</IconButton>
+
+<script>
+  const buttons = document.querySelectorAll('[data-scroll-up-button]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      window.scrollTo(window.scrollX, 0);
+    });
+  });
+</script>

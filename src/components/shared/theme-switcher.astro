@@ -1,9 +1,9 @@
 ---
 import { Icon } from 'astro-icon';
-import AppButton from './app-button.astro';
+import IconButton from './icon-button.astro';
 ---
 
-<AppButton id="theme-switcher" class="origin-[right_center]" title="Toggle theme">
+<IconButton id="theme-switcher" class="origin-[right_center]" title="Toggle theme">
   <div id="icon-theme-light">
     <Icon aria-hidden="true" name="theme/light" class="h-8" />
     <span class="sr-only">Gunakan tema terang</span>
@@ -13,7 +13,7 @@ import AppButton from './app-button.astro';
     <Icon aria-hidden="true" name="theme/dark" class="h-8" />
     <span class="sr-only">Gunakan tema gelap</span>
   </div>
-</AppButton>
+</IconButton>
 
 <script>
   import invariant from 'tiny-invariant';

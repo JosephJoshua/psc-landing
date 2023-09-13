@@ -1,16 +1,16 @@
 ---
 import { Icon } from 'astro-icon';
-import ThemeSwitcher from '~/components/theme-switcher.astro';
 import type { NavItem } from '~/types';
-import ContentSection from './content-section.astro';
-import ScrollUpButton from './scroll-up-button.astro';
-import AppButton from './app-button.astro';
-import AppLink from './app-link.astro';
+import ContentSection from '../shared/content-section.astro';
+import AppButton from '../shared/icon-button.astro';
+import AppLink from '../shared/app-link.astro';
+import ThemeSwitcher from '../shared/theme-switcher.astro';
+import ScrollUpButton from '../shared/scroll-up-button.astro';
+import PrimaryButton from '../shared/primary-button.astro';
 
 const navItems: Array<NavItem> = [
   { title: 'Tentang Kami', url: '#about-us' },
   { title: 'Layanan', url: '#services' },
-  { title: 'Hubungi Kami', url: '#contact-us' },
 ];
 ---
 
@@ -27,7 +27,7 @@ const navItems: Array<NavItem> = [
     <div>
       <div class="flex items-center gap-6">
         <nav class="hidden sm:block">
-          <ul class="flex items-center gap-6">
+          <menu class="flex items-center gap-6">
             {
               navItems.map(({ title, url }) => (
                 <li>
@@ -37,7 +37,13 @@ const navItems: Array<NavItem> = [
                 </li>
               ))
             }
-          </ul>
+
+            <li>
+              <a href="#contact-us">
+                <PrimaryButton>Hubungi Kami</PrimaryButton>
+              </a>
+            </li>
+          </menu>
         </nav>
 
         <AppButton id="open-nav-button" class="sm:hidden" aria-label="Navigation">
@@ -46,7 +52,8 @@ const navItems: Array<NavItem> = [
 
         <ThemeSwitcher />
         <ScrollUpButton
-          class="scroll-up-button -ml-14 origin-[center_right] scale-0 transition-all duration-300"
+          id="scroll-up-button"
+          class="-ml-14 origin-[center_right] scale-0 transition-all duration-300"
         />
       </div>
 
@@ -92,7 +99,7 @@ const navItems: Array<NavItem> = [
   const menu = document.querySelector(`#${menuModalId} ul`);
   const openNavButton = document.querySelector('#open-nav-button');
   const closeNavButton = document.querySelector('#close-nav-button');
-  const scrollUpButton = document.getElementsByClassName('scroll-up-button')[0];
+  const scrollUpButton = document.getElementById('scroll-up-button');
 
   invariant(menu, 'menu should not be null');
   invariant(scrollUpButton, 'scrollUpButton should not be null');
