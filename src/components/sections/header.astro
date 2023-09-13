@@ -16,7 +16,7 @@ const navItems: Array<NavItem> = [
 
 <header
   id="page-header"
-  class="sticky top-0 z-20 flex w-full justify-center border-b border-transparent bg-default px-8 py-4"
+  class="sticky top-0 z-20 flex w-full justify-center border-b border-transparent bg-default py-4"
 >
   <ContentSection class="flex w-full items-center justify-between">
     <AppLink class="flex items-center gap-3 hover:!text-default" href="#">
@@ -59,30 +59,40 @@ const navItems: Array<NavItem> = [
 
       <div id="menu-modal" class="modal hidden" aria-hidden="true">
         <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-          <div class="space-y-4" role="dialog" aria-modal="true">
-            <header class="text-right">
-              <AppButton id="close-nav-button" aria-label="Close navigation">
-                <Icon pack="mdi" name="close" class="h-8" />
-              </AppButton>
-            </header>
+          <div class="flex h-full flex-col justify-between gap-6" role="dialog" aria-modal="true">
+            <div>
+              <header class="text-right">
+                <AppButton id="close-nav-button" aria-label="Close navigation">
+                  <Icon pack="mdi" name="close" class="h-8" />
+                </AppButton>
+              </header>
 
-            <div class="flex justify-center">
-              <Icon name="logo" class="h-16" />
+              <div class="flex justify-center">
+                <Icon name="logo" class="h-16" />
+              </div>
             </div>
 
             <nav>
-              <ul class="flex flex-col">
+              <menu class="flex flex-col items-center gap-4">
                 {
                   navItems.map(({ title, url }) => (
                     <li>
-                      <AppLink class="block py-4 text-center text-xl" href={url}>
+                      <AppLink class="text-center text-lg" href={url}>
                         {title}
                       </AppLink>
                     </li>
                   ))
                 }
-              </ul>
+
+                <li class="w-full">
+                  <a href="#contact-us">
+                    <PrimaryButton class="w-full py-2 text-lg">Hubungi Kami</PrimaryButton>
+                  </a>
+                </li>
+              </menu>
             </nav>
+
+            <div></div>
           </div>
         </div>
       </div>
@@ -96,7 +106,7 @@ const navItems: Array<NavItem> = [
 
   const menuModalId = 'menu-modal';
 
-  const menu = document.querySelector(`#${menuModalId} ul`);
+  const menu = document.querySelector(`#${menuModalId} menu`);
   const openNavButton = document.querySelector('#open-nav-button');
   const closeNavButton = document.querySelector('#close-nav-button');
   const scrollUpButton = document.getElementById('scroll-up-button');
@@ -125,7 +135,7 @@ const navItems: Array<NavItem> = [
   });
 
   menu.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).tagName === 'A') {
+    if (['A', 'BUTTON'].includes((event.target as HTMLElement).tagName)) {
       closeMenu();
     }
   });

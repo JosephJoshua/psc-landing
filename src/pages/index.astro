@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/encode-sans';
 import AboutUs from '~/components/sections/about-us.astro';
+import ContactUs from '~/components/sections/contact-us.astro';
 import Footer from '~/components/sections/footer.astro';
 import Header from '~/components/sections/header.astro';
 import Services from '~/components/sections/services.astro';
@@ -8,6 +9,7 @@ import Splash from '~/components/sections/splash.astro';
 import '~/styles/index.css';
 
 const { generator, site } = Astro;
+
 const image = new URL('logo.png', site);
 const description = 'Servis HP dan Beli Sparepart & Accessories Murah di Sorong, Papua Barat.';
 ---
@@ -57,6 +59,7 @@ const description = 'Servis HP dan Beli Sparepart & Accessories Murah di Sorong,
       <Splash />
       <AboutUs />
       <Services />
+      <ContactUs />
       <Footer />
     </div>
   </body>

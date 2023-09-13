@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon';
+import ContentSection from '../shared/content-section.astro';
+---
+
+<ContentSection
+  id="contact-us"
+  class="flex flex-col items-center gap-6 md:flex-row md:items-stretch"
+>
+  <div class="flex flex-col gap-8">
+    <h2 class="font-bold tracking-wide text-4xl">Hubungi Kami</h2>
+
+    <div class="flex flex-1 flex-col justify-center gap-6">
+      <div class="flex items-center gap-4">
+        <Icon pack="mdi" name="whatsapp" class="h-8 md:h-12" />
+        <a href="" class="font-medium">081234567890</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <Icon pack="mdi" name="facebook" class="h-8 md:h-12" />
+        <a href="" class="font-medium">Lorem ipsum dolor sit</a>
+      </div>
+    </div>
+  </div>
+
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.340502377549!2d131.2931603749651!3d-0.8867406991046708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d59552479d09909%3A0x79f9cfd09c757c64!2sPOINT%20SERVICE%20CENTER%20-%20Sorong!5e0!3m2!1sen!2sid!4v1694576569575!5m2!1sen!2sid"
+    width="600"
+    height="450"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    class="max-w-full border"></iframe>
+</ContentSection>
