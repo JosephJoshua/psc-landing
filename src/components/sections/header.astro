@@ -107,8 +107,8 @@ const navItems: Array<NavItem> = [
   const menuModalId = 'menu-modal';
 
   const menu = document.querySelector(`#${menuModalId} menu`);
-  const openNavButton = document.querySelector('#open-nav-button');
-  const closeNavButton = document.querySelector('#close-nav-button');
+  const openNavButton = document.getElementById('open-nav-button');
+  const closeNavButton = document.getElementById('close-nav-button');
   const scrollUpButton = document.getElementById('scroll-up-button');
 
   invariant(menu, 'menu should not be null');
@@ -135,7 +135,8 @@ const navItems: Array<NavItem> = [
   });
 
   menu.addEventListener('click', (event) => {
-    if (['A', 'BUTTON'].includes((event.target as HTMLElement).tagName)) {
+    const tagName = (event.target as HTMLElement).tagName;
+    if (['A', 'BUTTON'].includes(tagName)) {
       closeMenu();
     }
   });

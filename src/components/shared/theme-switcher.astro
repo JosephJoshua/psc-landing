@@ -3,13 +3,13 @@ import { Icon } from 'astro-icon';
 import IconButton from './icon-button.astro';
 ---
 
-<IconButton id="theme-switcher" class="origin-[right_center]" title="Toggle theme">
-  <div id="icon-theme-light">
+<IconButton class="origin-[right_center]" title="Toggle theme" data-theme-switcher>
+  <div data-icon-theme-light>
     <Icon aria-hidden="true" name="theme/light" class="h-8" />
     <span class="sr-only">Gunakan tema terang</span>
   </div>
 
-  <div id="icon-theme-dark" class="hidden">
+  <div class="hidden" data-icon-theme-dark>
     <Icon aria-hidden="true" name="theme/dark" class="h-8" />
     <span class="sr-only">Gunakan tema gelap</span>
   </div>
@@ -19,29 +19,45 @@ import IconButton from './icon-button.astro';
   import invariant from 'tiny-invariant';
 
   const themes = ['light', 'dark'];
-  const button = document.querySelector('#theme-switcher');
-  invariant(button, 'button should not be null');
 
-  const getThemeCurrent = () => document.documentElement.dataset.theme;
-  const getThemeNext = () => {
-    const themeCurrent = getThemeCurrent();
-    invariant(themeCurrent, 'themeCurrent should not be undefined');
-    const indexThemeCurrent = themes.indexOf(themeCurrent);
-    return themes[(indexThemeCurrent + 1) % themes.length];
+  const getCurrentTheme = () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    invariant(currentTheme, 'currentTheme should not be undefined');
+
+    return currentTheme;
+  };
+
+  const getNextTheme = () => {
+    const currentTheme = getCurrentTheme();
+    const currentThemeIndex = themes.indexOf(currentTheme);
+
+    return themes[(currentThemeIndex + 1) % themes.length];
+  };
+
+  const getThemeIconElements = (theme: string) => {
+    return document.querySelectorAll(`[data-icon-theme-${theme}]`);
   };
 
   const updateIcon = () => {
-    const themeCurrent = getThemeCurrent();
-    document.querySelector(`#icon-theme-${themeCurrent}`)?.classList.add('hidden');
-    const themeNext = getThemeNext();
-    document.querySelector(`#icon-theme-${themeNext}`)?.classList.remove('hidden');
+    getThemeIconElements(getCurrentTheme()).forEach((el) => {
+      el.classList.add('hidden');
+    });
+
+    getThemeIconElements(getNextTheme()).forEach((el) => {
+      el.classList.remove('hidden');
+    });
   };
 
-  button.addEventListener('click', () => {
-    const themeNext = getThemeNext();
-    document.documentElement.dataset.theme = themeNext;
-    localStorage.setItem('theme', themeNext);
-    updateIcon();
+  const buttons = document.querySelectorAll('[data-theme-switcher]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const nextTheme = getNextTheme();
+
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem('theme', nextTheme);
+
+      updateIcon();
+    });
   });
 
   updateIcon();

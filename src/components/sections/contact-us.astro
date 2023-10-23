@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import ContentSection from '../shared/content-section.astro';
+import AppLink from '../shared/app-link.astro';
 ---
 
 <ContentSection
@@ -13,12 +14,12 @@ import ContentSection from '../shared/content-section.astro';
     <div class="flex flex-1 flex-col justify-center gap-6">
       <div class="flex items-center gap-4">
         <Icon pack="mdi" name="whatsapp" class="h-8 md:h-12" />
-        <a href="" class="font-medium">081234567890</a>
+        <AppLink href="" class="font-medium">081234567890</AppLink>
       </div>
 
       <div class="flex items-center gap-4">
         <Icon pack="mdi" name="facebook" class="h-8 md:h-12" />
-        <a href="" class="font-medium">Lorem ipsum dolor sit</a>
+        <AppLink href="" class="font-medium">Lorem ipsum dolor sit</AppLink>
       </div>
     </div>
   </div>
@@ -30,5 +31,5 @@ import ContentSection from '../shared/content-section.astro';
     allowfullscreen=""
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
-    class="max-w-full border"></iframe>
+    class="max-w-full rounded-lg border"></iframe>
 </ContentSection>

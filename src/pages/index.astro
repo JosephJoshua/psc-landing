@@ -35,10 +35,10 @@ const description = 'Servis HP dan Beli Sparepart & Accessories Murah di Sorong,
 
     <!-- initialize theme -->
     <script is:inline>
-      const themeSaved = localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('theme');
 
-      if (themeSaved) {
-        document.documentElement.dataset.theme = themeSaved;
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
       } else {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';

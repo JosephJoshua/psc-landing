@@ -1,13 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import ContentSection from '../shared/content-section.astro';
+
+import splashImage from '../../assets/splash-image.png';
 ---
 
 <ContentSection id="splash" class="w-full">
-  <div class="h-full w-full rounded-3xl bg-primary px-8 py-12 text-light">
-    <div class="mb-2">Toko Terbaik Untuk</div>
-    <div class="font-semibold leading-[2] text-2xl">
-      Servis HP dan<br /> beli accessories &<br /> sparepart terjangkau.
+  <div class="relative flex h-full w-full rounded-3xl bg-primary px-8 py-12 text-light">
+    <div class="absolute inset-y-0 right-6 hidden items-center justify-center md:flex">
+      <Image src={splashImage} alt="" class="h-full w-auto" />
     </div>
-    <div class="mt-12">Kab. Sorong, Papua Barat</div>
+
+    <div class="z-10">
+      <div class="mb-2">Toko Terbaik Untuk</div>
+      <div class="font-semibold leading-[2] text-2xl">
+        Servis HP dan<br /> beli accessories &<br /> sparepart terjangkau.
+      </div>
+      <div class="mt-12">Kab. Sorong, Papua Barat</div>
+    </div>
   </div>
 </ContentSection>
