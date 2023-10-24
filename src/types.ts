@@ -18,6 +18,11 @@ export interface BenefitItem {
   description: string;
 }
 
+export interface TestimonialItem {
+  quote: string;
+  author: string;
+}
+
 export interface FooterLink {
   description: string;
   icon: string;

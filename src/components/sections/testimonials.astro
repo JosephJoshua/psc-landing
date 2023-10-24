@@ -1,0 +1,48 @@
+---
+import type { TestimonialItem } from '~/types';
+import ContentSection from '../shared/content-section.astro';
+
+const testimonials: Array<TestimonialItem> = [
+  {
+    author: 'Siti F.',
+    quote: `
+      Tokonya termasuk lengkap, dalam pelayanan perbaikan juga cepat tergantung kondisi hp. Harga
+      yang ditawarkan juga lumayan, saya sering membeli headset di sini baik nirkabel atau
+      bluetooth.
+    `,
+  },
+  {
+    author: 'Lare A.',
+    quote: `
+      Tempat beli aksesoris hp yang cukup lengkap dan terbaru. Mulai dari headset, tempered glass dengan
+      kualitas bagus dan harga yang terjangkau. Ada juga hard case hp dengan berbagai macam karakter
+      yang menarik sehingga gadget anda menjadi seperti baru dan kekinian. Beli gadget
+      terbaru di sini tersedia dengan harga lebih murah dengan tempat lain di sorong. Pelayanan
+      yang cukup ramah sehingga kita bisa memilih sesuai dengan apa yang kita inginkan.
+    `,
+  },
+  {
+    author: 'Ian R.',
+    quote: `
+      Tempat service smartphone terbaik di Kota Sorong. Pelayanan ramah, kerusakan smartphone dijelaskan dengan baik, solusi yang ditawarkan juga yang terbaik untuk pelanggan.
+      Mantaaaaaapp.. 👍🏽👍🏽👍🏽👍🏽👍🏽
+    `,
+  },
+];
+---
+
+<ContentSection id="testimonials" class="flex flex-col items-center">
+  <h2 class="mb-8 font-bold tracking-wide text-secondary text-4xl">Dari Pelanggan Kami</h2>
+
+  <div class="flex flex-col items-center gap-4 md:flex-row">
+    {
+      testimonials.map((testimonial) => (
+        <div class="relative flex-1 rounded-lg bg-gradient-to-br from-primary to-secondary px-4 py-6 text-white text-sm">
+          <div>{testimonial.quote}</div>
+          <div class="mt-6 text-gray-200 text-sm">{testimonial.author}</div>
+          <div class="absolute -bottom-8 right-4 select-none text-white/50 text-8xl">&rdquo;</div>
+        </div>
+      ))
+    }
+  </div>
+</ContentSection>
