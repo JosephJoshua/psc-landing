@@ -4,7 +4,7 @@ import AboutUs from '~/components/sections/about-us.astro';
 import ContactUs from '~/components/sections/contact-us.astro';
 import Footer from '~/components/sections/footer.astro';
 import Header from '~/components/sections/header.astro';
-import Services from '~/components/sections/services.astro';
+import Benefits from '~/components/sections/benefits.astro';
 import Splash from '~/components/sections/splash.astro';
 import '~/styles/index.css';
 
@@ -51,15 +51,13 @@ const description = 'Servis HP dan Beli Sparepart & Accessories Murah di Sorong,
       });
     </script>
   </head>
-  <body
-    class="overflow-x-hidden bg-default px-8 text-default text-base selection:bg-secondary selection:text-white"
-  >
+  <body class="overflow-x-hidden px-8 text-base selection:bg-secondary selection:text-white">
     <Header />
 
     <div class="mt-8 flex flex-col items-center gap-24 pb-12">
       <Splash />
       <AboutUs />
-      <Services />
+      <Benefits />
       <ContactUs />
       <Footer />
     </div>

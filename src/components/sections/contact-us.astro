@@ -11,25 +11,35 @@ import AppLink from '../shared/app-link.astro';
   <div class="flex flex-col gap-8">
     <h2 class="font-bold tracking-wide text-4xl">Hubungi Kami</h2>
 
-    <div class="flex flex-1 flex-col justify-center gap-6">
+    <div class="flex flex-1 flex-col gap-6 md:mt-8">
       <div class="flex items-center gap-4">
         <Icon pack="mdi" name="whatsapp" class="h-8 md:h-12" />
-        <AppLink href="" class="font-medium">081234567890</AppLink>
+        <AppLink href="https://wa.me/082398200020" class="font-medium">082398200020</AppLink>
       </div>
 
       <div class="flex items-center gap-4">
         <Icon pack="mdi" name="facebook" class="h-8 md:h-12" />
-        <AppLink href="" class="font-medium">Lorem ipsum dolor sit</AppLink>
+        <AppLink
+          href="https://www.facebook.com/pointservicecenter/?locale=id_ID"
+          class="font-medium"
+        >
+          Point Service Center - Sorong
+        </AppLink>
       </div>
     </div>
   </div>
 
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.340502377549!2d131.2931603749651!3d-0.8867406991046708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d59552479d09909%3A0x79f9cfd09c757c64!2sPOINT%20SERVICE%20CENTER%20-%20Sorong!5e0!3m2!1sen!2sid!4v1694576569575!5m2!1sen!2sid"
-    width="600"
-    height="450"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    class="max-w-full rounded-lg border"></iframe>
+  <div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.340502377549!2d131.2931603749651!3d-0.8867406991046708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d59552479d09909%3A0x79f9cfd09c757c64!2sPOINT%20SERVICE%20CENTER%20-%20Sorong!5e0!3m2!1sen!2sid!4v1694576569575!5m2!1sen!2sid"
+      width="600"
+      height="450"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="max-w-full rounded-lg border"></iframe>
+
+    <div class="mt-4 text-center text-sm">Sebelum SMEA, Jl. Pendidikan Km. 8, Kota Sorong</div>
+    <div class="mt-2 text-center text-sm">Senin - Sabtu: 09:00 - 21:00 | Minggu: 15:00 - 21:00</div>
+  </div>
 </ContentSection>

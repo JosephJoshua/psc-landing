@@ -1,3 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+  html {
+    @apply border-default bg-default text-default;
+  }
+}
+
 .gradient-text {
   @apply bg-clip-text text-transparent;
   @apply bg-gradient-to-br from-primary to-secondary;

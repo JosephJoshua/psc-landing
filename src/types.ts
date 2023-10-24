@@ -12,7 +12,7 @@ export interface FeatureItem {
   title: string;
 }
 
-export interface ServiceItem {
+export interface BenefitItem {
   image: ImageMetadata;
   title: string;
   description: string;

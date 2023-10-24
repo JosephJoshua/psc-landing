@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import { type BenefitItem } from '~/types';
+import ContentSection from '../shared/content-section.astro';
+
+import benefit1 from '~/assets/benefit-1.jpg';
+import benefit2 from '~/assets/benefit-2.jpg';
+import benefit3 from '~/assets/benefit-3.jpg';
+
+const benefits: Array<BenefitItem> = [
+  {
+    title: 'Teknisi Profesional',
+    description: `
+        Mereka ahli dalam perbaikan ponsel dari berbagai merek dan memiliki akses ke sparepart asli.
+        Dengan pengalaman luas dan fokus pada kepuasan pelanggan, kami siap memberikan solusi cepat
+        dan terpercaya untuk semua perbaikan ponsel Anda.
+      `,
+    image: benefit1,
+  },
+  {
+    title: 'Aksesori dan Sparepart Berkualitas',
+    description: `
+      Kami menawarkan beragam aksesori ponsel berkualitas tinggi dan sparepart asli untuk
+      memaksimalkan pengalaman Anda dengan perangkat Anda. Temukan berbagai pilihan aksesori
+      modis dan sparepart yang andal di Point Service Center.
+    `,
+    image: benefit2,
+  },
+  {
+    title: 'Layanan Cepat dan Terpercaya',
+    description: `
+      Kami memahami betapa pentingnya ponsel Anda dalam kehidupan sehari-hari. Kami
+      berkomitmen agar Anda bisa kembali menggunakan ponsel Anda dalam waktu secepat mungkin.
+      Lebih dari itu, untuk kerusakan ringan kami bahkan bisa memperbaiki ponsel Anda di
+      tempat (dapat ditunggu).
+    `,
+    image: benefit3,
+  },
+];
+---
+
+<ContentSection id="benefits" class="flex flex-col items-center">
+  <h2 class="mb-8 font-bold tracking-wide text-4xl">Keunggulan Kami</h2>
+
+  <div class="flex flex-col gap-16">
+    {
+      benefits.map((benefit, index) => {
+        const isImageOnLeft = index % 2 === 0;
+
+        return (
+          <article class="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+            <div class={isImageOnLeft ? 'md:-order-1' : 'md:order-1'}>
+              <Image
+                src={benefit.image}
+                alt=""
+                class="h-full w-full rounded-3xl bg-cover object-cover"
+              />
+            </div>
+
+            <div class={isImageOnLeft ? 'md:order-1' : 'md:-order-1'}>
+              <h3 class="font-semibold tracking-wide text-secondary text-2xl">{benefit.title}</h3>
+              <p class="mt-4">{benefit.description}</p>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</ContentSection>
